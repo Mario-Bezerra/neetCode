@@ -1,19 +1,13 @@
+import java.util.Arrays;
+
 class Solution {
     public boolean isAnagram(String s, String t) {
-        String tAfterReplace = t;
+        char[] sChars = s.toCharArray();
+        char[] tChars = t.toCharArray();
 
-        for(int i = 0 ; i < s.length() ; i++){
-            if(!t.contains(String.valueOf(s.charAt(i))))
-                return false;
-            if(tAfterReplace.isEmpty())
-                return false;
+        Arrays.sort(sChars);
+        Arrays.sort(tChars);
 
-            tAfterReplace = tAfterReplace.replaceFirst(String.valueOf(s.charAt(i)), "");
-        }
-
-        if (tAfterReplace.length() == 0 && !tAfterReplace.equals(t))
-            return true;
-
-        return false;
+        return Arrays.equals(sChars, tChars);
     }
 }
