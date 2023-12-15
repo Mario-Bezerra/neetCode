@@ -1,26 +1,29 @@
 class Solution {
-    public boolean isPalindrome(String s) {
-        if (s.isEmpty()) {
-            return true;
+    public int[] twoSum(int[] numbers, int target) {
+    
+        int low = 0;
+        int high = numbers.length - 1;
+
+        if(numbers.length == 2){
+            return new int[] {1,2};
         }
-        int start = 0 ;
-        int end = s.length() - 1;
-        while(start <= end) {
-            char currStart = s.charAt(start);
-            char currEnd = s.charAt(end);
-            if(!Character.isLetterOrDigit(currStart)){
-                start++;
-            } else if(!Character.isLetterOrDigit(currEnd)){
-                end--;
-            } else {
-                if (Character.toLowerCase(currStart) != Character.toLowerCase(currEnd)){
-                    return false;
-                }
-                start++;
-                end--;
+
+        for(int i = low ; low <= high ;){
+            
+            if(numbers[low] + numbers[high] > target){
+                high--;
+            }
+            
+            if(numbers[low] + numbers[high] < target){
+                low++;
             }
 
+            if(numbers[low] + numbers[high] == target){
+                return new int[] {low + 1 , high + 1};
+            }
+            
         }
-        return true;
+
+        return new int[] {0,0};
     }
 }
